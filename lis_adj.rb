@@ -11,7 +11,7 @@ arestas  = []
 loop do
   system('clear')
   say('Menu Opções')
-  menu1 = ["1. Adicionar vertice: #{vertices if lista.count != 0}", "2. Adicionar aresta: #{arestas.map { |e| "V#{e[0]};V#{e[1]}" } if arestas.count != 0}", '3. Remover vertice:']
+  menu1 = ["1. Adicionar vertice: #{vertices if lista.count != 0}", "2. Adicionar aresta: #{arestas.map { |e| "V#{e[0]};V#{e[1]}" } if arestas.count != 0}", '3. Remover vertice:', '4. Remover aresta:']
   say(menu1.map { |c| "  #{c}\n" }.join)
   if lista.count != 0
     say('Lista Adjacente.')
