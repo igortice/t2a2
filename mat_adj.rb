@@ -5,9 +5,9 @@ require 'awesome_print'
 require 'terminal-table'
 
 
-matriz   = []
+matriz = []
 vertices = []
-arestas  = []
+arestas = []
 loop do
   system('clear')
   say('Menu Opções')
@@ -53,9 +53,12 @@ loop do
       end
     when '4'
       if arestas.count != 0
-        say("Escolha uma aresta a remover : \n#{arestas.map.with_index { |e, i| "#{i+1}. V#{e[0]};V#{e[1]}" + "\n" }.join}" )
+        say("Escolha uma aresta a remover : \n#{arestas.map.with_index { |e, i| "#{i+1}. V#{e[0]};V#{e[1]}" + "\n" }.join}")
         r = ask('Escolha: ')
+        x = arestas[r.to_i-1][0] - 1
+        y = arestas[r.to_i-1][1] - 1
         arestas.delete_at(r.to_i-1)
+        matriz[x][y] = 0
       else
         system('clear')
         say('Não existem vertices!')
