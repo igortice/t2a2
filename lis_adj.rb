@@ -15,8 +15,8 @@ loop do
   say(menu1.map { |c| "  #{c}\n" }.join)
   if lista.count != 0
     say('Lista Adjacente.')
-    lista.each_with_index do |ele, idx| 
-      puts "[#{vertices[idx].split('').last}] : #{ele.join('->')}"
+    lista.each_with_index do |ele, idx|
+      puts "[#{vertices[idx].split('').last}] : #{ele.join('->')}" if vertices[idx]
     end
   end
   case ask('Escolha: ', %w(1 2 3 4))
@@ -42,9 +42,9 @@ loop do
       if vertices.count != 0
         say("Escolha vertice a remover : \n" + vertices.map { |k| k.split('V').last+'. '+k+"\n" }.join)
         r = ask('Escolha: ')
-        lista.delete_at(r.to_i-1)
+        lista.each { |e| e.delete_if { |ele| ele == r } }
         vertices.delete_at(r.to_i-1)
-        arestas.each_with_index { |val, ind| arestas.delete_at(ind) if val.include? r.to_i }
+        arestas.reject!{|e| e.include?(r.to_i)}
       else
         system('clear')
         say('Não existem vertices!')
@@ -56,7 +56,7 @@ loop do
         x = arestas[r.to_i-1][0]
         y = arestas[r.to_i-1][1]
         arestas.delete_at(r.to_i-1)
-        lista.each{|e| e.delete_if{|ele| ele.to_i == x || ele.to_i == y}}
+        lista.each { |e| e.delete_if { |ele| ele.to_i == x || ele.to_i == y } }
       else
         system('clear')
         say('Não existem vertices!')
