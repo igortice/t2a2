@@ -46,7 +46,7 @@ loop do
         matriz.delete_at(r.to_i-1)
         matriz.each { |e| e.delete_at(r.to_i-1) }
         vertices.delete_at(r.to_i-1)
-        arestas.each_with_index { |val, ind| arestas.delete_at(ind) if val.include? r.to_i }
+        arestas.reject!{|e| e.include?(r.to_i)}
       else
         system('clear')
         say('Não existem vertices!')
